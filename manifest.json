@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.grantedmefluffy.omarchy-netcap",
+  "name": "NetCap",
+  "version": "1.0.0",
+  "author": "NetCap contributors",
+  "license": "MIT",
+  "description": "Monitor monthly network usage and apply upload/download speed caps from the Omarchy bar",
+  "homepage": "https://github.com/GrantedMeFluffy/omarchy-netcap",
+  "repository": "https://github.com/GrantedMeFluffy/omarchy-netcap",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "NetCap.qml"
+  },
+  "barWidget": {
+    "displayName": "NetCap",
+    "description": "Track monthly data use and throttle network speeds at your quota",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "schema": [
+      {
+        "key": "monthlyQuotaGiB",
+        "type": "integer",
+        "label": "Monthly quota (GiB)",
+        "description": "Throttle the connection after this much monthly data use",
+        "min": 1,
+        "max": 100000,
+        "step": 1,
+        "defaultValue": 100
+      },
+      {
+        "key": "downloadMbps",
+        "type": "integer",
+        "label": "Download cap (Mbps)",
+        "description": "Maximum download speed before the quota is reached",
+        "min": 1,
+        "max": 10000,
+        "step": 1,
+        "defaultValue": 100
+      },
+      {
+        "key": "uploadMbps",
+        "type": "integer",
+        "label": "Upload cap (Mbps)",
+        "description": "Maximum upload speed before the quota is reached",
+        "min": 1,
+        "max": 10000,
+        "step": 1,
+        "defaultValue": 20
+      },
+      {
+        "key": "throttledDownloadMbps",
+        "type": "integer",
+        "label": "Download after quota (Mbps)",
+        "description": "Download speed after monthly usage reaches the quota",
+        "min": 1,
+        "max": 10000,
+        "step": 1,
+        "defaultValue": 1
+      },
+      {
+        "key": "throttledUploadMbps",
+        "type": "integer",
+        "label": "Upload after quota (Mbps)",
+        "description": "Upload speed after monthly usage reaches the quota",
+        "min": 1,
+        "max": 10000,
+        "step": 1,
+        "defaultValue": 1
+      }
+    ]
+  }
+}
