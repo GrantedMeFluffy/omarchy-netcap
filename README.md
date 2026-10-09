@@ -45,6 +45,14 @@ the lower configured speeds automatically.
   If authorization is cancelled or fails, no limit change is reported as
   successful.
 
+## Upgrading from earlier versions
+
+If an earlier NetCap version has already applied caps, choose **Remove caps**
+in that version before updating. New versions require a root-owned ownership
+marker and deliberately refuse to adopt an existing unmarked HTB tree. This
+prevents NetCap from claiming or deleting traffic-control rules created by
+another tool.
+
 ## Uninstall
 
 Remove active caps from the widget before uninstalling:
