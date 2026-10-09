@@ -28,13 +28,15 @@ the lower configured speeds automatically.
 
 - Omarchy, `iproute2` (`ip` and `tc`), `jq`, and `pkexec`.
 - The default route must use a supported interface with an ordinary
-  `fq_codel`, `noqueue`, or `pfifo_fast` root qdisc. NetCap refuses to replace
-  custom qdiscs, an existing ingress setup, or an existing `netcap0` device it
-  does not own.
+  `fq_codel` or `pfifo_fast` root qdisc. NetCap refuses to replace an HTB or
+  other custom qdisc, an existing ingress setup, or an existing `netcap0`
+  device it does not own. A root-owned marker in `/run/omarchy-netcap/`
+  records the original qdisc and is required before NetCap will update or
+  remove traffic-control rules.
 - Download shaping uses an IFB device and Linux traffic control; upload
-  shaping uses HTB. Applying caps changes the active interface's qdisc while
-  enabled. Removing caps deletes NetCap's qdiscs so the kernel's default qdisc
-  is restored.
+  shaping uses HTB. Applying caps replaces the active interface's supported
+  root qdisc while enabled. Removing caps restores the recorded root qdisc and
+  removes only traffic-control rules that match NetCap's recorded state.
 - Usage starts at the first sample after the widget is installed/enabled.
   Counters are sampled every 10 seconds while the Omarchy shell is running.
   Traffic during a shell shutdown or before its first sample is not counted.
