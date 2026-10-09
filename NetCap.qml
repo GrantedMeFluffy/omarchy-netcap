@@ -180,32 +180,32 @@ Panel {
           (rootProc.exitCode === 126 ? "Administrator authorization cancelled; network unchanged" : "Could not change speed limits"))
       }
     }
+  }
 
-    component InfoRow: Row {
-      id: infoRow
-      required property string label
-      required property string value
-      width: parent.width
-      spacing: Style.space(8)
+  component InfoRow: Row {
+    id: infoRow
+    required property string label
+    required property string value
+    width: parent.width
+    spacing: Style.space(8)
 
-      Text {
-        width: infoRow.width * 0.66
-        text: infoRow.label
-        color: root.foreground
-        font.family: root.fontFamily
-        font.pixelSize: Style.font.body
-        elide: Text.ElideRight
-      }
+    Text {
+      width: infoRow.width * 0.66
+      text: infoRow.label
+      color: root.foreground
+      font.family: root.fontFamily
+      font.pixelSize: Style.font.body
+      elide: Text.ElideRight
+    }
 
-      Text {
-        width: infoRow.width - infoRow.width * 0.66 - infoRow.spacing
-        text: infoRow.value
-        color: root.foreground
-        font.family: root.fontFamily
-        font.pixelSize: Style.font.body
-        horizontalAlignment: Text.AlignRight
-        elide: Text.ElideRight
-      }
+    Text {
+      width: infoRow.width - infoRow.width * 0.66 - infoRow.spacing
+      text: infoRow.value
+      color: root.foreground
+      font.family: root.fontFamily
+      font.pixelSize: Style.font.body
+      horizontalAlignment: Text.AlignRight
+      elide: Text.ElideRight
     }
   }
 
