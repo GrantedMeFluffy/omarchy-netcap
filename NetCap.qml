@@ -153,8 +153,8 @@ Panel {
         }
       }
     }
-    onExited: function (code) {
-      if (code !== 0 && statusError.text.trim() !== "")
+    onRunningChanged: {
+      if (!running && statusProc.exitCode !== 0 && statusError.text.trim() !== "")
         root.actionStatus = statusError.text.trim()
     }
   }
@@ -164,11 +164,12 @@ Panel {
     command: []
     property string mode: ""
     stderr: StdioCollector { id: rootError; waitForEnd: true }
-    onExited: function (code) {
+    onRunningChanged: {
+      if (running) return
       var mode = rootProc.mode
       root.busy = false
       rootProc.mode = ""
-      if (code === 0) {
+      if (rootProc.exitCode === 0) {
         if (mode === "clear") root.showStatus("Speed limits removed")
         else if (mode === "automatic") root.showStatus("Quota reached — reduced speeds applied")
         else root.showStatus("Speed limits applied")
@@ -176,7 +177,7 @@ Panel {
         root.refresh()
       } else {
         root.showStatus(rootError.text.trim() ||
-          (code === 126 ? "Administrator authorization cancelled; network unchanged" : "Could not change speed limits"))
+          (rootProc.exitCode === 126 ? "Administrator authorization cancelled; network unchanged" : "Could not change speed limits"))
       }
     }
 
