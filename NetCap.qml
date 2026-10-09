@@ -152,10 +152,10 @@ Panel {
           root.actionStatus = "Could not read network usage: " + e
         }
       }
-      onExited: function (code) {
-        if (code !== 0 && statusError.text.trim() !== "")
-          root.actionStatus = statusError.text.trim()
-      }
+    }
+    onExited: function (code) {
+      if (code !== 0 && statusError.text.trim() !== "")
+        root.actionStatus = statusError.text.trim()
     }
   }
 
